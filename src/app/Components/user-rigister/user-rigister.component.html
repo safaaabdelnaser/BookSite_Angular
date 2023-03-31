@@ -1,0 +1,138 @@
+<section class="my-3" style="background-color: white;">
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-12 col-xl-11">
+        <div class="card text-light bg-dark " style="border-radius: 25px;">
+          <div class="card-body p-md-5">
+            <div class="row justify-content-center">
+              <div class="col-md-10 col-lg-6 col-xl-5  order-2 order-lg-1">
+
+                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+
+    <form class="mx-1 mx-md-4 col-sm-11" [formGroup]="UserForm" (ngSubmit)="AddNewUser()">
+                  <!-- name -->
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="bi bi-person bi-lg me-3 mb-5"></i>
+                    <!-- name -->
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="text" name="Username" id="Username" class="form-control" formControlName="Username"
+                         [class.is-valid]="Username?.valid"
+                        [class.is-invalid]="Username?.invalid" />
+                      <label class="form-label" for="Username">Your Name</label>
+
+                      <div class="alert alert-danger" [hidden]="Username?.valid ||Username?.untouched">
+                        <small *ngIf="Username?.errors?.['required']">your name is required</small>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <!-- address -->
+                  <div formGroupName="address" >
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="bi bi-house-add bi-lg me-3 mb-5"></i>
+                      <div class="form-outline flex-fill mb-0 me-2">
+                        <input type="text" id="city" name="city" class="form-control" formControlName="city"
+                         />
+                        <label class="form-label" for="city">City</label>
+                      </div>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="text" id="street" name="street" class="form-control" formControlName="street"
+                       />
+                        <label class="form-label" for="street">Street</label>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- phone -->
+
+                  <div class="d-flex flex-column align-items-center mb-4 " formArrayName="Phones" *ngIf="newUser">
+                    
+                    
+                    <div class="form-outline flex-fill mb-0 ms-4 col-11"  *ngFor="let myphone of Phones.controls;let i=index">
+                     <div >
+                      <i class="bi bi-telephone bi-lg me-3 mb-5 "></i>
+                      <input type="text" id="Phones{{i+1}}" name="Phones{{i+1}}" class="form-control "  
+                        [formControlName]="i" placeholder="Phone{{i+1}}" />
+                      <button class="btn btn-danger mt-1" (click)="DeleteNumber()"
+                        *ngIf="i>0 && myphone.value">-</button>
+                      <button class="btn btn-primary mt-1" (click)="AddNumber()" *ngIf="i==Phones.controls.length-1 && myphone.value">+</button>
+                    </div>
+                  </div>
+                  </div>
+
+                    <!-- email -->
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="bi bi-envelope bi-lg me-3 mb-5 "></i>
+                    
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="email" id="Email" name="Email" class="form-control" 
+                        formControlName="Email" [class.is-valid]="Email?.valid" [class.is-invalid]="Email?.invalid" />
+                      <label class="form-label" for="Email">Your Email</label>
+                      <div class="alert alert-danger" [hidden]="Email?.valid || Email?.untouched">
+                        <small *ngIf="Email?.errors?.['required']">Email is requered</small>
+                      </div>
+                    </div>
+                  </div>
+                <!-- password -->
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="bi bi-lock bi-lg me-3 mb-5"></i>
+                   
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="password" id="Password" nmae="Password" class="form-control"
+                        formControlName="Password"  [class.is-valid]="Password?.valid" [class.is-invalid]="Password?.invalid"  />
+                      <label class="form-label" for="Password">Password</label>
+
+                      <div class="alert alert-danger" [hidden]="Password?.valid || Password?.untouched">
+                        <small *ngIf="Password?.errors?.['required']">Password is requered</small>
+                        <small *ngIf="Password?.errors?.['minlength']">Password is at least 6 chatacters</small>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Repassword -->
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="bi bi-key bi-lg me-3 mb-5"></i>
+                    
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="password" id="RePassword" name="RePassword" class="form-control"
+                        formControlName="RePassword" [class.is-valid]="RePassword?.valid" [class.is-invalid]="RePassword?.invalid"
+                        (keyup)="matchValues(RePassword?.value)"/>
+                      <label class="form-label" for="Repassword">Repeat your password</label>
+
+                      <div class="alert alert-danger" [hidden]="RePassword?.valid || RePassword?.untouched" >
+                        <small *ngIf="RePassword?.errors?.['required']">Confirm Password is requered</small>
+                        <small>Value that entered not identical with Password</small>
+                        
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-check d-flex justify-content-center mb-5">
+                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
+                    <label class="form-check-label" for="form2Example3">
+                      I agree all statements in <a href="#!">Terms of service</a>
+                    </label>
+                  </div>
+
+                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                    <input type="submit" class="btn btn-primary btn-lg" value="SignUp" name="submit" id="sub">
+                  </div>
+
+                </form>
+
+              </div>
+              <div class="col-md-10 col-lg-6 col-xl-7 col-sm-3 d-flex align-items-center order-1 order-lg-2">
+
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                  class="img-fluid rounded-5" alt="Sample image">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<h3 class="alert-info">{{UserForm.value|json}}</h3>

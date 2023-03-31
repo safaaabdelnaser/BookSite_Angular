@@ -1,0 +1,82 @@
+
+<button class="btn btn-outline-primary p-2 mt-3" [routerLink]="['/NewProduct']">Add New Product</button>
+<!-- card -->
+<div class="card-group row me-5">
+<div class=" p-4 mt-2 col-4" *ngFor="let prod of ProductsListByCategory " >
+<!-- Custom directive Of card boxShadow and border raduis -->
+    <div class="card col"  appStyleOfCard="#210603" >
+      <!-- <ng-container  *ngIf="prod.Quantity!=0"> -->
+      <div class=""  [ngStyle]="{'color':(prod.Quantity==0)?'red':'black','background-color':(prod.Quantity==1)?'rgb(146, 146, 240)':'rgb(231, 228, 190)'}">
+       
+        <div class="card-header bg-transparent border-success">{{prod.PName}}</div>
+        <img [src]="prod.Img" width="150" height="250" class="card-img-top p-0" > 
+        <div class="card-body">
+          <!-- <h5 class="card-title">{{prod.CateogryID}} Book</h5> -->
+          <!-- hid product quntity =0 -->
+          <p class="card-text" id="quantity" *ngIf="prod.Quantity !=0;else outofstock"><b>Quantity available: </b>{{prod.Quantity}}</p>
+          <ng-template #outofstock>Out of Stock</ng-template>
+          <p class="card-text"><b>Price: </b>{{prod.Price |currency}}</p>
+          <p><b>Price: </b>{{prod.Price | dateOperation:34 | currency:'EGP'}}</p>
+            
+          <!-- decrease quantity -->
+          <!-- <button class="btn btn-primary mx-4 col-10" (click)="DecreaseQuantity(this.prod.ID)" [disabled]="prod.Quantity==0">Buy</button> -->
+          <div class="row p-2">
+          <input type="number" id="count" min="0" class="col-5 me-2" placeholder="Quentity" #itemCount >
+          <button class="btn btn-success col-6"  [disabled]="prod.Quantity==0" (click)="ShowProduct(prod,itemCount.value,prod.Price)"  >Add To Cart</button>
+          
+          </div>
+        </div>
+        <div class="card-footer">
+          <!-- <h2>id:{{prod.PID}}</h2> -->
+        <span *ngIf="prod.Discount !='No Discount';else nodiscount">We offer an explicit Discount : {{prod.Discount}}</span>
+          <ng-template #nodiscount><b>No Discount</b></ng-template> 
+          <div class="row mt-3">
+            <a  class="btn btn-dark" (click)="openPrdDetails(prod.id)">view Details</a>
+          
+          </div>
+<div  class="row">
+          <div class="col-5 mt-2">
+            <a  class="btn btn-primary px-5" (click)="EditProduct(prod.id)">Edit</a>
+          
+          </div>
+          <div class="col-5 mt-2 mx-2">
+            <a  class="btn btn-danger px-5 me-3" (click)="deleteProductApi(prod.id)">delete</a>
+          
+          </div>
+  </div>
+        </div>
+      </div>
+      
+    <!-- </ng-container> -->
+    </div>
+    </div>
+  </div>
+  
+ 
+  <table class="table" >
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Count</th>
+        <th scope="col">TotalPrice</th>
+        <th>Remove Item</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pr of ListsingleProducts">
+        
+        <td>{{pr.products.PName}}</td>
+        <td>{{pr.products.Price}}</td>
+        <td>{{pr.count}}</td>
+        <td>{{pr.price}}</td>
+        <td><button class="btn btn-outline-primary" (click)="deleteProduct(pr.products.id)"> Delete</button></td>
+      </tr>
+      </tbody>
+      </table>
+      <div class="col">
+        <label for="">TotalPrice:</label>
+      <input type="text" class="form-control w-50" name="cost" id="cost" #totalcost readonly>
+      <button (click)="TotalOrderPrice()" class="btn btn-primary p-2 m-2 w-25">Check Out</button>
+      </div>
+      

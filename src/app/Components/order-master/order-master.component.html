@@ -1,0 +1,9 @@
+<label for="cat" >Select Cateogry</label>
+<select class="form-control" name="cat" id="cat"  [(ngModel)]="selectedCatID">
+  <option value="0">All</option>
+  <option *ngFor="let cat of CategoryList" [value]="cat.CatID">{{cat.CatName}}</option>
+</select>
+
+<app-data-of-products [ReceviedCategoryID]="selectedCatID" (addToCart)="orderBill($event)" ></app-data-of-products>
+
+ 

@@ -1,0 +1,23 @@
+<div class="row active pt-4" (click)="toggleMessage()">
+  <h3></h3>
+  
+
+    <h3 class="col-8">Hello in {{storeObj.StoreName}}</h3>
+    <h3 class="col-4">{{toDay|date:'long'}}</h3>
+    <br>
+    <img class="img-responsive col-10 my-5 h-25" *ngIf="IsPurshased" [src]="storeObj.log" height="160" >
+    <div class="alert alert-success mt-3 h-75" role="alert" *ngIf="!IsPurshased">
+      Thanks  <b>{{ClientName}}</b>  for purchasing from our Store ^_^
+      <div class="row mt-5">
+        <label for="ID" class="col-2">National ID:</label>
+        <input type="text" id="ID" placeholder="Enter National ID" class="form-control col-7 w-75" [(ngModel)]="ID" >
+        <!-- <input type="text" id="form" placeholder="Enter Fromat" class="form-control col-7 w-75" [(ngModel)]="Fromat" > -->
+        
+        <!-- <button (click)="{{nationalID}}" class="btn btn-outline-danger col-4 mt-2">Show BrithDate</button> -->
+        <p> {{ID|nationalID:"fulldate"}}</p>
+        <h4>Your CreditCard:<b>{{Cerditcaerd|cerditCard}}</b></h4>
+      </div>
+     </div>
+     <!-- <button (click)="toggleMessage()" class="btn btn-outline-primary mt-5 col-3 h-50 ms-5">CheckOut</button> -->
+    </div>
+

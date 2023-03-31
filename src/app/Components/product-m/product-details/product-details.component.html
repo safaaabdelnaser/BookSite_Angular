@@ -1,0 +1,39 @@
+<section id="services" class="services section-bg card mt-3 me-5">
+  <div class="container-fluid card-body"  >
+    <div class="row row-sm" *ngIf="prd">
+      <div class="col-md-6 _boxzoom">
+        <img [src]="prd.Img" class="card-img-top" alt="..." appBorderRaduis="25px">
+      </div>
+      <div class="col-md-6">
+        <div class="_product-detail-content">
+          <p class="_p-name">Title:{{prd.PName}}</p>
+          
+          <div class="_p-price-box">
+            <div class="p-list">
+              Price: {{prd.Price}}
+            </div>
+            <div class="_p-add-cart">
+              <div class="_p-qty">
+                Quantity: {{prd.Quantity}}
+              </div>
+            </div>
+            <div class="_p-add-cart">
+              <div class="_p-qty">
+                Edition:{{prd.id}}
+              </div>
+            </div>
+
+            <div class="col m-2">
+              <button type="button" class="btn btn-primary m-2" (click)="prevProduct()"
+                [disabled]="currentProductID==0">Previous</button>
+              <button type="button" class="btn btn-warning m-2" (click)="nextProduct()"
+                [disabled]="currentProductID==productsIDList.length-1">Next</button>
+              <button type="button" class="btn btn-danger" (click)="BackHome()">Back</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

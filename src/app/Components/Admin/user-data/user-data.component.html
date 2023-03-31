@@ -1,0 +1,28 @@
+<table class="table" >
+    <thead>
+      <tr>
+        <th scope="col">Username</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone1</th>
+        <th scope="col">Phone2</th>
+        <th scope="col">City</th>
+        <th scope="col">Street</th>
+        <th scope="col">Password</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of ListUsers">
+        
+        <td>{{user.Username}}</td>
+        <td>{{user.Email}}</td>
+        <td>{{user.Phones[0]}}</td>
+        <td>{{user.Phones[1]}}</td>
+        <td>{{user.address.city}}</td>
+        <td>{{user.address.street}}</td>
+        <td>{{user.Password}}</td>
+        </tr>
+      </tbody>
+      </table>
+    
+      

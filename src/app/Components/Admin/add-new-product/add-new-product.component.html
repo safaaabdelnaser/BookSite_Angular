@@ -1,0 +1,56 @@
+<!-- <button (click)="AddNewProduct()">save</button> -->
+
+<form #productForm="ngForm" (ngSubmit)="AddNewProduct()">
+
+
+   
+    <div class="mb-3">
+      <label for="prdName" class="form-label">Product Name</label>
+  
+      <input type="text" #prdName="ngModel" class="form-control" name="prdName" id="prdName"
+        [(ngModel)]="newProduct.PName" required pattern="[A-Za-z0-9]{3,20}" [class.is-valid]="prdName.valid" [class.is-invalid]="prdName.invalid">
+
+      <div class="alert alert-danger" [hidden]="prdName.valid || prdName.untouched" >
+          <small *ngIf="prdName.errors?.['required']">Product name is required</small>
+          <small *ngIf="prdName.errors?.['pattern']">Product name must be at least 3 char</small>
+      </div>
+    </div>
+  
+  
+    <div class="mb-3">
+      <label for="prdQuant" class="form-label">Quantity</label>
+      <input type="number"  #prdQ="ngModel" class="form-control" name="prdQuant" id="prdQuant" min=0 required
+      [class.is-valid]="prdQ.valid" [class.is-invalid]="prdQ.invalid"
+      [(ngModel)]="newProduct.Quantity">
+      <div class="alert alert-danger" [hidden]="prdQ.valid || prdQ.untouched" >
+        <small *ngIf="prdQ.errors?.['required']">Product Quantity is required</small>
+        </div>
+    </div>
+    
+  
+    <div class="mb-3">
+      <label for="prdPrc" class="form-label">Price</label>
+      <input type="number" #prdPrice="ngModel" class="form-control" name="prdPrc" id="prdPrc" required [(ngModel)]="newProduct.Price" pattern="[0-9]{1,10}" >
+    
+  
+    <div class="alert alert-danger" [hidden]="prdPrice.valid || prdPrice.untouched" >
+        <small *ngIf="prdPrice.errors?.['required']">Product Price is required</small>
+        <small *ngIf="prdPrice.errors?.['pattern']">Product Price must large 0</small>
+    </div>
+</div>
+
+    <div class="mb-3">
+      <label for="prdCat" class="form-label">Select Category</label>
+      <select class="form-control" name="prdCat" id="prdCat" required [(ngModel)]="newProduct.CateogryID">
+       <option disabled="disabled">select</option>
+        <option *ngFor="let cat of catList" [value]="cat.CatID">{{cat.CatName}}
+        </option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="image">Select an image:</label>
+      <input type="file" id="image" name="image"  class="form-control">
+    </div>
+  
+    <input type="submit" class="btn btn-success" [disabled]="productForm.invalid" name="submit" id="sub" value="Save">
+  </form>

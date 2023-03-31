@@ -1,0 +1,76 @@
+
+<!-- start header-->
+<nav class="navbar navbar-expand-xl fixed-top  ">
+    <div class="container-fluid">
+        <!--log -->
+        <a class="navbar-brand hvr-wobble-horizontal " style="color:#c5bbbb" routerLink="">Your <span>Book</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#flowersite" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="flowersite">
+        <!--search bar-->
+        
+        <div class="input-group d-flex justify-content-center ">
+            <div class="form-group has-search">
+              <span class="bi bi-search form-control-feedback" style="margin-top: -4px;"></span>
+              <input type="search" id="form1" class="form-control" placeholder="Search"/>
+              <div class="input-group-append">
+            </div>
+           
+        </div>
+          <!--links of header-->
+        <ul class="navbar-nav ps-5 ms-1">
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/Home" routerLinkActive="active">Home</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/AboutUs" routerLinkActive="active">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/ContactUs" routerLinkActive="active">Contact Us</a>
+          </li>
+          <!-- <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Categories
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Categorie 1</a></li>
+              <li><a class="dropdown-item" href="#">Categorie 2</a></li>
+              <li><a class="dropdown-item" href="#">Categorie 3 </a></li>
+              <li><a class="dropdown-item" href="#">Categorie 4</a></li>
+            </ul>
+          </li> -->
+  
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/Products" routerLinkActive="active">All Product</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/Orders" routerLinkActive="active">Orders</a>
+          </li>
+
+       
+           <li class="nav-item ">
+            <a  class="nav-link " routerLink="/SignUp" routerLinkActive="active" [hidden]="UserLogin"><span class="bi bi-person"></span>Sign Up </a>
+           </li>
+           
+           <li class="nav-item ">
+            <a  class="nav-link" routerLink="/SignIn" routerLinkActive="active" [hidden]="UserLogin"><span class="bi bi-box-arrow-in-right" ></span> Sign in</a>
+        </li>
+        <li class="nav-item ">
+          <a  class="nav-link" routerLink="/SignOut" routerLinkActive="active" [hidden]="!UserLogin"><span class="bi bi-box-arrow-in-right"></span> LogOut</a>
+      </li>
+    
+        <li class="nav-item">
+            <a  class="nav-link "routerLink="/ShopingCart" routerLinkActive="active">  <i class="bi bi-cart"></i></a>
+        </li>
+   
+        </ul>
+
+      </div>
+    </div>
+    </div>
+  </nav>
+<!--end of the header -->
+
